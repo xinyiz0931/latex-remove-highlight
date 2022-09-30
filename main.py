@@ -1,41 +1,45 @@
 import re
 # remain_revised = True 
 revised_remain = False 
-revise_cmd = 'red' # \red{somthing}
-delete_cmd = 'del' # \del{something}
+revise_cmds = ['red', 'blue']
+delete_cmds = ['del']
+# revise_cmd = 'red' # \red{somthing}
+# delete_cmd = 'del' # \del{something}
 
-red = []
-delete = []
 with open('manuscript.txt') as f:
     s = f.read()
 
 # ----------------------- delete command: remove -----------------------------------
-for i, c_left in enumerate(s):
-    if c_left == '\\' and s[i+1:i+1+len(delete_cmd)] == delete_cmd and s[i+1+len(delete_cmd)] != '}':
-        s_after = s[i:]
-        # j = s_after.index("}")
-        js = [m.start() for m in re.finditer('}', s_after)] 
-        for j in js:
-            if s[i:i+j+1].count('{') == s[i:i+j+1].count('}'):
-                delete.append(s[i:i+j+1])
-                break
-for d in delete:
-    s = s.replace(d, "")
-
-# ------------------------ revise command: red -> black ---------------------------
-if not revised_remain:
+delete = []
+for delete_cmd in delete_cmds:
     for i, c_left in enumerate(s):
-        if c_left == "\\" and s[i+1:i+1+len(revise_cmd)] == revise_cmd and s[i+1+len(revise_cmd)] != '}':
+        if c_left == '\\' and s[i+1:i+1+len(delete_cmd)] == delete_cmd and s[i+1+len(delete_cmd)] != '}':
             s_after = s[i:]
             # j = s_after.index("}")
             js = [m.start() for m in re.finditer('}', s_after)] 
             for j in js:
                 if s[i:i+j+1].count('{') == s[i:i+j+1].count('}'):
-                    red.append(s[i:i+j+1])
+                    delete.append(s[i:i+j+1])
                     break
+    for d in delete:
+        s = s.replace(d, "")
 
-    for r in red:
-        s = s.replace(r, r[1+len(revise_cmd)+1:-1])
+# ------------------------ revise command: color -> black ---------------------------
+red = []
+for revise_cmd in revise_cmds:
+    if not revised_remain:
+        for i, c_left in enumerate(s):
+            if c_left == "\\" and s[i+1:i+1+len(revise_cmd)] == revise_cmd and s[i+1+len(revise_cmd)] != '}':
+                s_after = s[i:]
+                # j = s_after.index("}")
+                js = [m.start() for m in re.finditer('}', s_after)] 
+                for j in js:
+                    if s[i:i+j+1].count('{') == s[i:i+j+1].count('}'):
+                        red.append(s[i:i+j+1])
+                        break
+
+        for r in red:
+            s = s.replace(r, r[1+len(revise_cmd)+1:-1])
 
 print("write to new file ... ")
 with open('manuscript_new.txt', 'w') as fr:
