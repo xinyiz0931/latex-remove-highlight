@@ -41,4 +41,9 @@ print("write to new file ... ")
 with open('manuscript_new.txt', 'w') as fr:
     fr.write(s)
 
+print("copy to clipboard, just use ctrl+v to paste")
+import pyperclip
+pyperclip.copy(s)
+spam = pyperclip.paste()
+
 
