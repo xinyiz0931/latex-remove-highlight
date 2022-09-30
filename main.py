@@ -6,7 +6,7 @@ delete_cmd = 'del' # \del{something}
 
 red = []
 delete = []
-with open('original.txt') as f:
+with open('manuscript.txt') as f:
     s = f.read()
 
 # ----------------------- delete command: remove -----------------------------------
@@ -38,7 +38,7 @@ if not revised_remain:
         s = s.replace(r, r[1+len(revise_cmd):-1])
 
 print("write to new file ... ")
-with open('update.txt', 'w') as fr:
+with open('manuscript_new.txt', 'w') as fr:
     fr.write(s)
 
 
