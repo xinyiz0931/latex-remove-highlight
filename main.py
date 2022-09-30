@@ -11,7 +11,7 @@ with open('manuscript.txt') as f:
 
 # ----------------------- delete command: remove -----------------------------------
 for i, c_left in enumerate(s):
-    if c_left == '\\' and s[i+1:i+1+len(delete_cmd)] == delete_cmd and s[i+1+len(delete)] != '}':
+    if c_left == '\\' and s[i+1:i+1+len(delete_cmd)] == delete_cmd and s[i+1+len(delete_cmd)] != '}':
         s_after = s[i:]
         # j = s_after.index("}")
         js = [m.start() for m in re.finditer('}', s_after)] 
@@ -35,7 +35,7 @@ if not revised_remain:
                     break
 
     for r in red:
-        s = s.replace(r, r[1+len(revise_cmd):-1])
+        s = s.replace(r, r[1+len(revise_cmd)+1:-1])
 
 print("write to new file ... ")
 with open('manuscript_new.txt', 'w') as fr:
