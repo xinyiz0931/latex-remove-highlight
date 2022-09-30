@@ -1,17 +1,17 @@
 import re
 # remain_revised = True 
 revised_remain = False 
-revise_command = 'red' # \red{somthing}
-delete_command = 'del' # \del{something}
+revise_cmd = 'red' # \red{somthing}
+delete_cmd = 'del' # \del{something}
 
 red = []
 delete = []
-with open('manuscript.txt') as f:
+with open('original.txt') as f:
     s = f.read()
 
 # ----------------------- delete command: remove -----------------------------------
 for i, c_left in enumerate(s):
-    if c_left == '\\' and s[i+1:i+4] == delete_command and s[i+4] != '}':
+    if c_left == '\\' and s[i+1:i+1+len(delete_cmd)] == delete_cmd and s[i+1+len(delete)] != '}':
         s_after = s[i:]
         # j = s_after.index("}")
         js = [m.start() for m in re.finditer('}', s_after)] 
@@ -25,7 +25,7 @@ for d in delete:
 # ------------------------ revise command: red -> black ---------------------------
 if not revised_remain:
     for i, c_left in enumerate(s):
-        if c_left == "\\" and s[i+1:i+4] == revise_command and s[i+4] != '}':
+        if c_left == "\\" and s[i+1:i+1+len(revise_cmd)] == revise_cmd and s[i+1+len(revise_cmd)] != '}':
             s_after = s[i:]
             # j = s_after.index("}")
             js = [m.start() for m in re.finditer('}', s_after)] 
@@ -35,9 +35,10 @@ if not revised_remain:
                     break
 
     for r in red:
-        print(r[5:-1])
-        s = s.replace(r, r[5:-1])
+        s = s.replace(r, r[1+len(revise_cmd):-1])
 
 print("write to new file ... ")
-with open('manuscript_new.txt', 'w') as fr:
+with open('update.txt', 'w') as fr:
     fr.write(s)
+
+
