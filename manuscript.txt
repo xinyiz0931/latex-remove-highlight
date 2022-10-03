@@ -1,7 +1,83 @@
-\blue{\begin{abstract}
-    Wire harnesses are essential connecting components in manufacturing industry but are challenging to be automated in industrial tasks such as bin picking. They are long, flexible and tend to get entangled when randomly placed in a bin. This makes it difficult for the robot  to pick a single one from the clutter. Besides, modeling wire harnesses is difficult due to the complex structures of combining deformable cables with rigid components, making it unsuitable for training or collecting data in simulation. In this work, instead of directly lifting wire harnesses, we proposed to grasp and extract the target following circle-like trajectories until it is separated from the clutter. We learn a policy from real-world data to infer the optimal action and grasp from visual observation. Our policy enables the robot to  efficiently pick and separate the entangled wire harnesses by maximizing success rates and reducing the execution time. To evaluate our policy, we present a set of real-world experiments on picking wire harnesses. Results show a significant improvement in success rates from 49.2\% to 84.6\% over  baseline. We also evaluate the effectiveness of our policy under different clutter scenarios using unseen types of wire harnesses.  The proposed method is a feasible approach to utilize wire harnesses for industrial bin picking.
-\end{abstract}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+\pdfminorversion=4
+\documentclass[letterpaper, 10 pt, journal]{ieeeconf}
+% \documentclass[paperpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-%%%%%%%%%%%%%%%%%%% SECTION 1 %%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
+
+\IEEEoverridecommandlockouts                              % This command is only needed if 
+                                                          % you want to use the \thanks command
+
+\overrideIEEEmargins                                      % Needed to meet printer requirements.
+
+%In case you encounter the following error:
+%Error 1010 The PDF file may be corrupt (unable to open PDF file) OR
+%Error 1000 An error occurred while parsing a contents stream. Unable to analyze the PDF file.
+%This is a known problem with pdfLaTeX conversion filter. The file cannot be opened with acrobat reader
+%Please use one of the alternatives below to circumvent this error by uncommenting one or the other
+%\pdfobjcompresslevel=0
+%\pdfminorversion=4
+
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+% The following packages can be found on http:\\www.ctan.org
+
+
+\usepackage{graphics} % for pdf, bitmapped graphics files
+\usepackage{epsfig} % for postscript graphics files
+\usepackage{times} % assumes new font selection scheme installed
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage{amsmath, bm}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{threeparttable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{algorithmicx}
+\usepackage{enumerate}
+
+\usepackage{ulem}
+\usepackage{tcolorbox}
+\usepackage{color}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcommand{\rev}[1]{\color{red}{#1}}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\gray}[1]{\textcolor[rgb]{0.5, 0.5, 0.5}{#1}}
+\newcommand{\green}[1]{\textcolor[rgb]{0.0, 0.69, 0.31}{#1}}
+\newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
+\newcommand{\del}[1]{\textcolor[rgb]{0.5, 0.5, 0.5}{\sout{#1}}}
+
+\makeatletter
+\newcommand{\removelatexerror}{\let\@latex@error\@gobble}
+\makeatother
+
+\title{\LARGE \bf
+Learning Efficient Policies for Picking Entangled Wire Harnesses:\\
+\del{A Solution} \red{An Approach} to Industrial Bin Picking
+}
+
+\author{Xinyi Zhang$^{1*}$, %Keisuke Koyama$^{1}$,
+Yukiyasu Domae$^{2}$, Weiwei Wan$^{1}$ and Kensuke Harada$^{1,2}$% <-this % stops a space
+\thanks{*Correspond to: {\tt\small chou@hlab.sys.es.osaka-u.ac.jp}}%}% <-this % stops a space
+\thanks{$^{1}$Graduate School of Engineering Science, Osaka University, Japan}%
+\thanks{$^{2}$Industrial Cyber Physical Systems Research Center, National Institute of Advanced Industrial Science and Technology (AIST), Japan}
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+    Wire harnesses are essential connecting components in manufacturing industry but are challenging to be automated in industrial tasks such as bin picking. They are long, flexible and tend to get entangled when randomly placed in a bin. This makes \red{it difficult for} the robot \del{struggle} to pick a single one from the clutter. Besides, modeling wire harnesses is difficult due to the complex structures of combining deformable cables with rigid components, making it unsuitable for training or collecting data in simulation. In this work, instead of directly lifting wire harnesses, we proposed to grasp and extract the target following circle-like trajectories until it is separated from the clutter. We learn a policy from real-world data to infer the optimal action and grasp from visual observation. Our policy enables the robot to \del{perform non-tangle pickings} efficiently \red{pick and separate the entangled wire harnesses} by maximizing success rates and reducing the execution time. To evaluate our policy, we present a set of real-world experiments on picking wire harnesses. Results show a significant improvement in success rates from 49.2\% to 84.6\% over \del{the tangle-agnostic bin picking method} \red{baseline}. We also evaluate the effectiveness of our policy under different clutter scenarios using unseen types of wire harnesses. \del{The proposed method is expected to provide a practical solution for automating manufacturing processes with wire harnesses.} \red{The proposed method is a feasible approach to utilize wire harnesses for industrial bin picking.}
+\end{abstract}

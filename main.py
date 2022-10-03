@@ -1,10 +1,8 @@
 import re
 # remain_revised = True 
 revised_remain = False 
-revise_cmds = ['red', 'blue']
-delete_cmds = ['del']
-# revise_cmd = 'red' # \red{somthing}
-# delete_cmd = 'del' # \del{something}
+revise_cmds = ['red', 'blue', 'frame', 'rev'] # just remove command
+delete_cmds = ['del'] # remove all
 
 with open('manuscript.txt') as f:
     s = f.read()
@@ -41,9 +39,9 @@ for revise_cmd in revise_cmds:
         for r in red:
             s = s.replace(r, r[1+len(revise_cmd)+1:-1])
 
-print("write to new file ... ")
-with open('manuscript_new.txt', 'w') as fr:
-    fr.write(s)
+# print("write to new file ... ")
+# with open('manuscript_new.txt', 'w') as fr:
+#     fr.write(s)
 
 print("copy to clipboard, just use ctrl+v to paste")
 import pyperclip
